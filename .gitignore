@@ -2,3 +2,4 @@
 .vercel
 .nuxt
 node_modules
+.env
