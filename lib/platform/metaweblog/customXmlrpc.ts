@@ -2,7 +2,6 @@ import logUtil from "~/lib/logUtil";
 // @ts-ignore
 import * as Serializer from 'xmlrpc/lib/serializer'
 import { parse } from 'arraybuffer-xml-parser';
-console.log(Serializer)
 
 /**
  * 自定义xmlrpc的请求与解析，解决apache xmlrpc的扩展问题
