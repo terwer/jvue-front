@@ -23,5 +23,5 @@ export default defineNuxtConfig({
         CONF_API_URL: process.env.CONF_API_URL,
         CONF_USERNAME: process.env.CONF_USERNAME,
         CONF_PASSWORD: process.env.CONF_PASSWORD
-    },
+    }
 })

@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "jvue-from",
+      "script": "yarn",
+      "args" : "vdev",
+      "instances": "max",
+      "exec_mode": "cluster"
+    }
+  ]
+}
