@@ -1,37 +1,31 @@
 <template>
-  <div>
-    Data begin
-    {{ data }}
-    Data end
-
-    <h1>
-      <NuxtLink to="/post">
-        测试详情页面
-      </NuxtLink>
-    </h1>
-    <NuxtWelcome/>
-  </div>
+  <HomePostList/>
 </template>
 
 <script lang="ts" setup>
-import logUtil from "~/lib/logUtil";
-import {SERVER_API_CONSTANTS} from "~/lib/constants/serverApiConstants";
-
-const route = useRoute()
-
-const homePostsUrl = route.query.t ? SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS + "?t=" + route.query.t :
-    SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS
-const {data} = await useFetch(homePostsUrl)
-logUtil.logInfo(SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS + " data=>", data.value)
-
-definePageMeta({
-  layout: "custom",
-});
+useHead({
+  title: 'My App',
+  // or, instead:
+  // titleTemplate: (title) => `My App - ${title}`,
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  charset: 'utf-8',
+  meta: [
+    {name: 'keywords', content: 'site,app,vercel'},
+    {name: 'description', content: 'My amazing site.'}
+  ],
+  bodyAttrs: {
+    class: 'jvue-index-body'
+  }
+})
 </script>
 
 <script lang="ts">
+
+import HomePostList from "~/Components/default/HomePostList.vue";
+
 export default {
-  name: "index"
+  name: "index",
+  components: {HomePostList}
 }
 </script>
 
