@@ -2,7 +2,12 @@ import {API_TYPE_CONSTANTS} from "~/lib/constants";
 import {API} from "~/lib/api";
 
 export default defineEventHandler(async (event) => {
-    const type = API_TYPE_CONSTANTS.API_TYPE_SIYUAN
+    const query = useQuery(event)
+    if (query.t instanceof Array) {
+        throw new Error("参数类型错误")
+    }
+
+    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_JVUE
     const num = 10
     const page = 1
     const keyword = ""

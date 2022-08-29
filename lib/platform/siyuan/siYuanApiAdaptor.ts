@@ -1,8 +1,8 @@
 import {Post} from "~/lib/common/post";
 import {UserBlog} from "~/lib/common/userBlog";
 import {API_TYPE_CONSTANTS} from "~/lib/constants";
-import {removeTitleNumber, removeWidgetTag} from "~/lib/htmlUtil";
-import {SiYuanApi} from "~/lib/siyuan/siYuanApi";
+import {prettyHtml, removeTitleNumber} from "~/lib/htmlUtil";
+import {SiYuanApi} from "~/lib/platform/siyuan/siYuanApi";
 import {IApi} from "~/lib/api";
 import {renderHTML} from "~/lib/markdownUtil";
 
@@ -106,9 +106,8 @@ export class SiYuanApiAdaptor implements IApi {
         const shortDesc = attrs["custom-desc"] || ""
 
         // 渲染Markdown
-        let html = renderHTML(md.content)
-        // 移除挂件html
-        html = removeWidgetTag(html)
+        let htmlContent = renderHTML(md.content)
+        htmlContent = prettyHtml(htmlContent)
 
         let title = siyuanPost.content || ""
         title = removeTitleNumber(title)
@@ -117,7 +116,7 @@ export class SiYuanApiAdaptor implements IApi {
         let commonPost = new Post()
         commonPost.postid = siyuanPost.root_id || ""
         commonPost.title = title
-        commonPost.description = html || ""
+        commonPost.description = htmlContent || ""
         commonPost.shortDesc = shortDesc || ""
         commonPost.mt_keywords = attrs.tags || ""
         commonPost.isPublished = isPublished

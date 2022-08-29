@@ -1,8 +1,14 @@
-import {SiYuanApiAdaptor} from "~/lib/siyuan/siYuanApiAdaptor";
+import {SiYuanApiAdaptor} from "~/lib/platform/siyuan/siYuanApiAdaptor";
 import {API_TYPE_CONSTANTS} from "~/lib/constants";
 import {Post} from "~/lib/common/post";
 import {UserBlog} from "~/lib/common/userBlog";
+import {JvueApiAdaptor} from "~/lib/platform/metaweblog/jvue/jvueApiAdaptor";
+import {ConfApiAdaptor} from "~/lib/platform/metaweblog/conf/confApiAdaptor";
+import {CnblogsApiAdaptor} from "~/lib/platform/metaweblog/cnblogs/cnblogsApiAdaptor";
 
+/**
+ * 通用API定义
+ */
 export interface IApi {
     /**
      * 博客配置列表
@@ -34,6 +40,15 @@ export class API implements IApi {
         switch (this.type) {
             case API_TYPE_CONSTANTS.API_TYPE_SIYUAN:
                 this.apiAdaptor = new SiYuanApiAdaptor(env)
+                break;
+            case API_TYPE_CONSTANTS.API_TYPE_JVUE:
+                this.apiAdaptor = new JvueApiAdaptor(env)
+                break;
+            case API_TYPE_CONSTANTS.API_TYPE_CONF:
+                this.apiAdaptor = new ConfApiAdaptor(env)
+                break;
+            case API_TYPE_CONSTANTS.API_TYPE_CNBLOGS:
+                this.apiAdaptor = new CnblogsApiAdaptor(env)
                 break;
             default:
                 throw new Error("未找到接口适配器，请检查参数")

@@ -2,8 +2,13 @@ import {API_TYPE_CONSTANTS} from "~/lib/constants";
 import {API} from "~/lib/api";
 
 export default defineEventHandler(async (event) => {
-    const type = API_TYPE_CONSTANTS.API_TYPE_SIYUAN
-    const postid = "20220822195304-l7nucpp"
+    const query = useQuery(event)
+    if (query.t instanceof Array) {
+        throw new Error("参数类型错误")
+    }
+
+    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_JVUE
+    const postid = "1"
 
     const env = useRuntimeConfig()
     console.log('Runtime env:', env)

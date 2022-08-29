@@ -1,17 +1,3 @@
-// const showdown = require("showdown")
-// const converter = new showdown.Converter();
-//
-// /**
-//  * 将Markdown转换为HTML
-//  * @param md Markdown
-//  * @returns {*} HTML
-//  */
-// export function mdToHtml(md: string) {
-//     let html = converter.makeHtml(md);
-//     return removeWidgetTag(html);
-// }
-// instdead by lute
-
 import {renderHTML} from "./markdownUtil";
 
 /**
@@ -33,7 +19,7 @@ export function removeTitleNumber(str: string) {
  * @param str 原字符
  * @returns {*|string} 删除后的字符
  */
-export function removeWidgetTag(str: string) {
+function removeWidgetTag(str: string) {
     let newstr = str
 
     // 旧版发布挂件
@@ -52,24 +38,6 @@ export function removeWidgetTag(str: string) {
     newstr = newstr.replace(h1Regex, "")
 
     return newstr
-}
-
-/**
- * 截取指定长度html
- * @param html html
- * @param length 长度
- * @param ignore 不要结尾省略号
- * @returns {string} 结果
- */
-export function parseHtml(html: string, length: number, ignore?: boolean) {
-    let allText = filterHtml(html);
-    if (allText.length < length) {
-        return allText;
-    }
-    if (ignore) {
-        return allText.substring(0, length);
-    }
-    return allText.substring(0, length) + "...";
 }
 
 /**
@@ -116,12 +84,42 @@ function filterHtml(str: string) {
 }
 
 /**
+ * 去除挂件占位符HTML、标题序号等
+ * @param html 原始HTML
+ */
+export function prettyHtml(html: string) {
+    let newHtml = html
+    newHtml = removeWidgetTag(newHtml)
+    newHtml = removeTitleNumber(newHtml)
+    return newHtml
+}
+
+/**
+ * 截取指定长度字符
+ * @param text
+ * @param length 长度
+ * @param ignore 不要结尾省略号
+ * @returns {string} 结果
+ */
+export function subText(text: string, length: number, ignore?: boolean) {
+    let allText = text
+    if (allText.length < length) {
+        return allText;
+    }
+    if (ignore) {
+        return allText.substring(0, length);
+    }
+    return allText.substring(0, length) + "...";
+}
+
+/**
  * 将Markdown转换为纯文本
  * @param md
  * @returns {string}
  */
-export function mdToPlanText(md: string) {
+export function mdToPlainText(md: string) {
     let html = renderHTML(md)
-    html = removeWidgetTag(html)
-    return filterHtml(html)
+    html = prettyHtml(html)
+    html = filterHtml(html)
+    return html
 }

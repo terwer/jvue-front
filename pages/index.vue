@@ -17,8 +17,14 @@
 import logUtil from "~/lib/logUtil";
 import {SERVER_API_CONSTANTS} from "~/lib/constants/serverApiConstants";
 
-const {data} = await useFetch(SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS)
+const route = useRoute()
+
+const {data} = await useFetch(SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS + "?t=" + route.query.t)
 logUtil.logInfo(SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS + " data=>", data.value)
+
+definePageMeta({
+  layout: "custom",
+});
 </script>
 
 <script lang="ts">
