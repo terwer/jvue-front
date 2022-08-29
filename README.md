@@ -3,6 +3,8 @@ Next version for jvue-front using [nuxt3](https://github.com/nuxt/framework) whi
 
 We will start develop after Nuxt3 **stabe** release,please wait...
 
+See also:[https://github.com/element-plus/element-plus-nuxt-starter/issues/46](https://github.com/element-plus/element-plus-nuxt-starter/issues/46)
+
 ## Install
 ```bash
 dnf install npm
