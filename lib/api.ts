@@ -5,6 +5,7 @@ import {UserBlog} from "~/lib/common/userBlog";
 import {JvueApiAdaptor} from "~/lib/platform/metaweblog/jvue/jvueApiAdaptor";
 import {ConfApiAdaptor} from "~/lib/platform/metaweblog/conf/confApiAdaptor";
 import {CnblogsApiAdaptor} from "~/lib/platform/metaweblog/cnblogs/cnblogsApiAdaptor";
+import {WordpressApiAdaptor} from "~/lib/platform/metaweblog/wordpress/wordpressApiAdaptor";
 
 /**
  * 通用API定义
@@ -49,6 +50,9 @@ export class API implements IApi {
                 break;
             case API_TYPE_CONSTANTS.API_TYPE_CNBLOGS:
                 this.apiAdaptor = new CnblogsApiAdaptor(env)
+                break;
+            case API_TYPE_CONSTANTS.API_TYPE_WORDPRESS:
+                this.apiAdaptor = new WordpressApiAdaptor(env)
                 break;
             default:
                 throw new Error("未找到接口适配器，请检查参数")

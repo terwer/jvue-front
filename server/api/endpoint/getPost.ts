@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
         throw new Error("参数类型错误")
     }
 
-    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_JVUE
+    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_WORDPRESS
     const postid = "1"
 
     const env = useRuntimeConfig()
