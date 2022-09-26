@@ -8,7 +8,7 @@
 const route = useRoute()
 
 function enableCustomLayout() {
-  route.meta.layout = "custom"
+  route.meta.layout = "default"
 }
 
 definePageMeta({

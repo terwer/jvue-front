@@ -21,7 +21,7 @@ useHead({
 
 <script lang="ts">
 
-import HomePostList from "~/Components/default/HomePostList.vue";
+import HomePostList from "~/components/default/HomePostList.vue";
 
 export default {
   name: "index",

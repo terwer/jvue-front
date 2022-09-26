@@ -1,16 +1,66 @@
 import {defineNuxtConfig} from 'nuxt'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    // meta
+    meta: {
+        title: 'Element Plus + Nuxt 3',
+        meta: [
+            {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+            {
+                hid: 'description',
+                name: 'description',
+                content: 'ElementPlus + Nuxt3',
+            },
+        ],
+        link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    },
+
     nitro: {
         preset: "vercel",
     },
-    typescript: {
-        strict: true
+
+    // css
+    css: ['~/assets/scss/index.scss'],
+
+    // build
+    build: {
+        transpile: ['element-plus/es'],
     },
+
+    typescript: {
+        strict: true,
+        shim: false,
+    },
+
     static: {
         prefix: false
     },
+
+    vite: {
+        plugins: [ElementPlus()],
+    },
+
+    // build modules
+    modules: ['@vueuse/nuxt', '@unocss/nuxt', '@pinia/nuxt'],
+
+    // auto import components
+    components: true,
+
+    // vueuse
+    vueuse: {
+        ssrHandlers: true,
+    },
+
+    unocss: {
+        uno: true,
+        attributify: true,
+        icons: {
+            scale: 1.2,
+        },
+    },
+
     publicRuntimeConfig: {
         SIYUAN_API_URL: process.env.SIYUAN_API_URL,
         SIYUAN_AUTH_TOKEN: process.env.SIYUAN_AUTH_TOKEN,
