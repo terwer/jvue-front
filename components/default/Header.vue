@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import Navbar from "~/Components/default/Navbar.vue";
+import Navbar from "~/components/default/Navbar.vue";
 
 export default {
   name: "Header",
