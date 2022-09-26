@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     }
     logUtil.logInfo("query.t", query.t)
 
-    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_JVUE
+    const type = query.t || API_TYPE_CONSTANTS.API_TYPE_WORDPRESS
     const num = 10
     const page = 1
     const keyword = ""
