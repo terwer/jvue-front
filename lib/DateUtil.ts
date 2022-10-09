@@ -11,6 +11,13 @@ import {calendar} from "./Calendar";
 const lunar: any = calendar.solar2lunar();
 
 /**
+ * 获取当前年
+ */
+const getNowYear = () => {
+    return lunar.lYear;
+}
+
+/**
  * 根据日期获取星期几
  * @returns {string} 星期
  */
@@ -87,4 +94,31 @@ const getShengXiao = function () {
     return shengxiao;
 };
 
-export {getClientTime, getPopTime, getTradTime, getShengXiao, getWeekByDay};
+/**
+ * 获取倒计时
+ * @param y 年
+ * @param m 月
+ * @param d 日
+ */
+const getCountDown = (y?: number, m?: number, d?: number) => {
+    var today = new Date();
+
+    var BigDay = new Date("September 10, 2011");
+    var msPerDay = 24 * 60 * 60 * 1000;
+    var timeLeft = (today.getTime() - BigDay.getTime());
+    var e_daysLeft = timeLeft / msPerDay;
+    var daysLeft = Math.floor(e_daysLeft);
+    var yearsLeft = 0;
+    if (daysLeft > 365) {
+        yearsLeft = Math.floor(daysLeft / 365);
+        e_daysLeft = e_daysLeft % 365;
+        daysLeft = daysLeft % 365;
+    }
+
+    var e_hrsLeft = (e_daysLeft - daysLeft) * 24;
+    var hrsLeft = Math.floor(e_hrsLeft);
+    var minsLeft = Math.floor((e_hrsLeft - hrsLeft) * 60);
+    return yearsLeft + " 年 " + daysLeft + " 天 " + hrsLeft + " 小时 " + minsLeft + " 分钟";
+}
+
+export {getNowYear, getClientTime, getPopTime, getTradTime, getShengXiao, getWeekByDay, getCountDown};

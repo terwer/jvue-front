@@ -26,7 +26,9 @@ export default defineNuxtConfig({
 
     // build
     build: {
-        transpile: ['element-plus/es'],
+        transpile: [
+            'element-plus/es',
+        ]
     },
 
     typescript: {

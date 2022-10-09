@@ -62,9 +62,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.time {
-  line-height: 30px;
-  text-align: left;
-  padding: 10px;
+.time{
+  margin-bottom: 10px;
 }
 </style>

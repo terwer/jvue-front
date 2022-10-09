@@ -15,6 +15,26 @@ a {
   color: var(--el-color-primary);
 }
 
+/**
+* 所有主题公共样式
+* 注意：每个主题都要引用这个样式
+*/
+body {
+  font-family: "LXGW WenKai","Wenquanyi Micro Hei","Wenquanyi Micro Hei Mono","Microsoft YaHei", "PT Sans", "-apple-system", "Liberation Mono", monospace, dejavu sans mono,Fira Code,Microsoft Yahei,Consolas,Courier New,monospace,Menlo,Monaco !important;
+  color: #666 !important;
+}
+body,
+* {
+  box-sizing: border-box;
+}
+body a {
+  text-decoration: none;
+  color: #00a4ff;
+}
+body a:hover {
+  color: orangered;
+}
+
 /*
 页面动画
 https://github.com/nuxt/framework/issues/3141#issuecomment-1212899838
@@ -45,4 +65,12 @@ https://github.com/nuxt/framework/issues/3141#issuecomment-1212899838
 .layout-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+/* layout */
+.jvue-body{
+  padding: 20px;
+}
+.el-menu-item > div{
+  margin-left: -20px !important;
 }
