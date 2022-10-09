@@ -11,6 +11,8 @@
     <!-- 备案信息 -->
     <div class="page copyright">
       &copy; 2011-{{ getNowYear() }} <a href="https://terwer.space" target="_blank">Terwer</a> All Rights Reseaved.
+      <a href="https://github.com/terwer/jvue-front" target="_blank">Github</a>.
+      <a>暗黑模式</a>
     </div>
   </footer>
 </template>
