@@ -40,9 +40,8 @@
 </template>
 
 <script lang="ts" setup>
-import {ElForm, ElFormItem, ElButton, ElSelect, ElOption} from "element-plus";
-import {ref} from 'vue'
-import {ElSpace, ElDivider} from 'element-plus'
+import {ElButton, ElDivider, ElForm, ElFormItem, ElOption, ElSelect, ElSpace} from "element-plus";
+import {h, ref} from 'vue'
 
 const value = ref('default')
 const options = [
@@ -63,9 +62,10 @@ const langOptions = [
   },
 ]
 
-definePageMeta({
-  layout: false,
-});
+// 使用这一行可以不使用通用布局
+// definePageMeta({
+//   layout: false,
+// });
 
 const route = useRoute()
 
@@ -78,12 +78,9 @@ const spacer = h(ElDivider, {direction: 'vertical'})
 
 <script lang="ts">
 export default {
-  name: "ChangeTheme"
+  name: "seting"
 }
 </script>
 
 <style scoped>
-.setting {
-  padding: 10px;
-}
 </style>
