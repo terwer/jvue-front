@@ -8,6 +8,10 @@ See also:[https://github.com/element-plus/element-plus-nuxt-starter/issues/46](h
 ## Install
 ```bash
 dnf install npm
+# apt install nom
+npm i -g n
+sudo n stable
+
 npm i -g yarn
 npm i -g vercel
 npm i -g pm2
@@ -17,7 +21,31 @@ npm i -g pm2
 yarn
 ```
 
-## dev
+## Set up environment variables
+
+Copy the .env.example file in this directory to .env (which will be ignored by Git):
+
+```bash
+cp .env.example .env
+```
+
+and change the config, the file maybe like this:
+
+```properties
+# setting for Siyuan-Note
+SIYUAN_API_URL=
+SIYUAN_AUTH_TOKEN=
+
+# setting for WordPress
+WORDPRESS_API_URL=https://wordpress-host/xmlrpc.php
+WORDPRESS_USERNAME=
+WORDPRESS_PASSWORD=
+
+# set wordpress as default
+DEFAULT_TYPE=wordpress
+```
+
+## Dev
 
 ```bash
 yarn dev
@@ -29,7 +57,8 @@ or
 yarn vdev
 ```
 
-## deploy
+## Deploy
+
 ```bash
 pm2 start pm2.json
 ```
