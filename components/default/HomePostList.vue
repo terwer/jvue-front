@@ -1,8 +1,6 @@
 <template>
   <div>
-    Data begin
-    {{ data }}
-    Data end
+    {{ data.msg }}
 
     <h1>
       <NuxtLink to="/post">

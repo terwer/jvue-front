@@ -8,7 +8,9 @@
       </template>
     </el-page-header>
 
-    <Navbar/>
+    <header-time/>
+
+    <navbar/>
   </header>
 </template>
 
@@ -16,6 +18,7 @@
 import Navbar from "~/components/default/Navbar.vue";
 import {ElPageHeader} from "element-plus";
 import {ArrowLeft} from '@element-plus/icons-vue'
+import HeaderTime from "~/components/default/HeaderTime.vue";
 
 const router = useRouter();
 const onBack = () => {
