@@ -3,7 +3,7 @@
     <client-only>
       <el-col :xs="24" :sm="24" :md="8">
         <div>
-          现在是
+          {{ $t('header.nowis') }}
           {{ timeData.clientTime }}
           {{ timeData.weekday }}
         </div>

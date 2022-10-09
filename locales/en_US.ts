@@ -7,5 +7,6 @@ export default {
     "theme.choose": "Choose theme",
     "theme.choose.default": "Default theme",
     "theme.choose.terwer": "Terwer theme",
-    "ele.select.placeholder": "Select"
+    "ele.select.placeholder": "Select",
+    "header.nowis":"Now is",
 }

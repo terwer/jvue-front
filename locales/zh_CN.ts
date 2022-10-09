@@ -8,4 +8,5 @@ export default {
     "theme.choose.default": "默认主题",
     "theme.choose.terwer": "特维主题",
     "ele.select.placeholder": "请选择",
+    "header.nowis":"现在是",
 }

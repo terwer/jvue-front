@@ -12,14 +12,21 @@
     <div class="page copyright">
       &copy; 2011-{{ getNowYear() }} <a href="https://terwer.space" target="_blank">Terwer</a> All Rights Reseaved.
       <a href="https://github.com/terwer/jvue-front" target="_blank">Github</a>.
-      <a>暗黑模式</a>
+      <a @click="toggleDark()" class="footer-mode">
+        {{ isDark ? $t('theme.mode.light') : $t('theme.mode.dark') }}
+      </a>
+
     </div>
   </footer>
 </template>
 
 <script lang="ts" setup>
 import {getNowYear, getCountDown} from "~/lib/DateUtil";
+import {useDark, useToggle} from "@vueuse/core";
 
+// 模式
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 </script>
 
 <script lang="ts">
@@ -33,5 +40,9 @@ export default {
 <style scoped>
 .page {
   padding: 5px 0;
+}
+
+.footer-mode {
+  cursor: pointer;
 }
 </style>

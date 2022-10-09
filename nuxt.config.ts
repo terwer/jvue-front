@@ -22,7 +22,11 @@ export default defineNuxtConfig({
     },
 
     // css
-    css: ['~/assets/scss/index.scss'],
+    css: [
+        '~/assets/scss/index.scss',
+        '~/assets/scss/index.dark.scss',
+        'element-plus/theme-chalk/dark/css-vars.css'
+    ],
 
     // build
     build: {
