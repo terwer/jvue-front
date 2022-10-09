@@ -20,7 +20,13 @@ yarn
 ## dev
 
 ```bash
-vercel dev
+yarn dev
+```
+
+or
+
+```bash
+yarn vdev
 ```
 
 ## deploy

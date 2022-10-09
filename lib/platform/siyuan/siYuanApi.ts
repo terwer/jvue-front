@@ -18,21 +18,48 @@ export class SiYuanApi {
     /**
      * 分页获取根文档
      * @param page 页码
-     * @param pagesize 数目
      * @param keyword 关键字
      */
+    public async getRootBlocksCount(keyword: string) {
+        let stmt = `SELECT COUNT(DISTINCT b1.root_id) as count
+        FROM blocks b1
+        WHERE 1 = 1
+        AND ((b1.content LIKE '%${keyword}%') OR (b1.tag LIKE '%${keyword}%')
+    )`;
+        let data = await this.sql(stmt)
+        // logUtil.logError("getRootBlocksCount data=>", data[0].count)
+        return data[0].count
+    }
+
+    /**
+     * 分页获取根文档
+     * @param page 页码
+     * @param pagesize 数目
+     *
+     * select DISTINCT b2.root_id,b2.parent_id,b2.content from blocks b2
+     *        WHERE 1==1
+     * AND b2.id IN (
+     *     SELECT DISTINCT b1.root_id
+     *        FROM blocks b1
+     *        WHERE 1 = 1
+     *        AND ((b1.content LIKE '%github%') OR (b1.tag LIKE '%github%'))
+     *        ORDER BY b1.updated DESC,b1.created DESC LIMIT 0,10
+     * )
+     * ORDER BY b2.updated DESC,b2.created DESC
+     */
     public async getRootBlocks(page: number, pagesize: number, keyword: string) {
-        let stmt = `SELECT b.content, tmp.root_id
-                FROM (SELECT DISTINCT root_id
-                      FROM blocks
-                      WHERE 1 = 1
-                        AND content LIKE '%${keyword}%'
-                      ORDER BY created DESC LIMIT ${page}, ${pagesize}) tmp,
-                     blocks b
-                WHERE tmp.root_id = b.root_id
-                  AND b.parent_id = ''
-                ORDER BY b.created DESC`
-        return await this.sql(stmt)
+        let stmt = `select DISTINCT b2.root_id,b2.parent_id,b2.content from blocks b2 
+        WHERE 1==1
+        AND b2.id IN (
+             SELECT DISTINCT b1.root_id
+                FROM blocks b1
+                WHERE 1 = 1
+                AND ((b1.content LIKE '%${keyword}%') OR (b1.tag LIKE '%${keyword}%'))
+                ORDER BY b1.updated DESC,b1.created DESC LIMIT ${page},${pagesize}
+        )
+        ORDER BY b2.updated DESC,b2.created DESC`
+        let data = await this.sql(stmt)
+        return data
     }
 
     /**
