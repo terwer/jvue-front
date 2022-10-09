@@ -1,79 +1,105 @@
 <template>
   <div class="setting">
     <el-form>
-      <h1>Setting</h1>
-      <el-form-item label="Lang">
-        <el-space :spacer="spacer">
-          <client-only>
-            <el-select v-model="lang" placeholder="Select">
-              <el-option
-                  v-for="item in langOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              />
-            </el-select>
-          </client-only>
-          <el-button type="primary" @click="enableCustomLayout">Update layout</el-button>
-        </el-space>
+      <!-- 主题 -->
+      <el-form-item :label="$t('theme.choose')">
+        <client-only>
+          <el-select v-model="layout" :placeholder="$t('ele.select.placeholder')" @change="layoutChanged">
+            <el-option
+                v-for="item in layouts"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            />
+          </el-select>
+        </client-only>
       </el-form-item>
-      <el-form-item label="Layout">
-        <el-space :spacer="spacer">
-          <client-only>
-            <el-select v-model="value" placeholder="Select">
-              <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-              />
-            </el-select>
-          </client-only>
-          <el-button type="primary" @click="enableCustomLayout">Update layout</el-button>
-        </el-space>
+
+      <!-- 语言选项 -->
+      <el-form-item :label="$t('lang.choose')">
+        <client-only>
+          <el-select :placeholder="$t('lang.choose.placeholder')" v-model="$i18n.locale" @change="langChanged">
+            <el-option :key="i" v-for="(lang, i) in langs" :label="lang.label" :value="lang.value"/>
+          </el-select>
+        </client-only>
       </el-form-item>
-      <el-form-item label="Dark mode">
-        <el-button type="primary">Change mode</el-button>
+
+      <!-- 暗黑模式 -->
+      <el-form-item :label="$t('theme.mode.choose')">
+        <el-button type="primary" @click="toggleDark()">
+          {{ isDark ? $t('theme.mode.light') : $t('theme.mode.dark') }}
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ElButton, ElDivider, ElForm, ElFormItem, ElOption, ElSelect, ElSpace} from "element-plus";
-import {h, ref} from 'vue'
+import {ElButton, ElForm, ElFormItem, ElOption, ElSelect} from "element-plus";
+import {useI18n} from "vue-i18n";
+import logUtil from "~/lib/logUtil";
+import {useDark, useToggle} from "@vueuse/core";
+import {useSettingStore} from "~/stores/settingStore";
 
-const value = ref('default')
-const options = [
+const {t} = useI18n()
+const router = useRouter();
+const route = useRoute()
+const {locale} = useI18n()
+const {layout, setLayout, lang, setLang} = useSettingStore()
+
+// 主题
+const layouts = [
+  {
+    value: '',
+    label: t('ele.select.placeholder'),
+  },
   {
     value: 'default',
-    label: 'default',
-  },
-]
-const lang = ref('zh_CN')
-const langOptions = [
-  {
-    value: 'zh_CN',
-    label: '简体中文',
+    label: t('theme.choose.default'),
   },
   {
-    value: 'en_US',
-    label: 'English',
+    value: 'terwer',
+    label: t('theme.choose.terwer'),
   },
 ]
-
 // 使用这一行可以不使用通用布局
 // definePageMeta({
 //   layout: false,
 // });
+const layoutChanged = (ly: any) => {
+  logUtil.logInfo("layoutChanged=>", ly);
 
-const route = useRoute()
-
-function enableCustomLayout() {
-  route.meta.layout = "default"
+  // route.meta.layout = "default"
+  setLayout(ly)
+  route.meta.layout = ly
 }
 
-const spacer = h(ElDivider, {direction: 'vertical'})
+// 语言
+const langs = [
+  {
+    value: 'zh_CN',
+    label: "简体中文"
+  },
+  {
+    value: 'en_US',
+    label: "English"
+  }
+]
+const langChanged = (lang: string) => {
+  logUtil.logInfo("langChanged=>", lang);
+  setLang(lang);
+  locale.value = lang;
+
+  // 跳转首页，解决当前页面不能马上生效问题
+  router.push({path: "/"});
+}
+
+// 模式
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+
+// 初始化
+locale.value = lang
 </script>
 
 <script lang="ts">

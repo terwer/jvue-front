@@ -1,20 +1,20 @@
 <template>
   <el-row class="time">
-    <el-col :xs="24" :sm="24" :md="8">
-      <div>
-        现在是
-        <client-only>
+    <client-only>
+      <el-col :xs="24" :sm="24" :md="8">
+        <div>
+          现在是
           {{ timeData.clientTime }}
-        </client-only>
-        {{ timeData.weekday }}
-      </div>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="8">
-      <div>{{ timeData.popTime === "" ? "加载中..." : timeData.popTime }}</div>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="8">
-      <div>{{ timeData.tradTime === "" ? "加载中..." : timeData.tradTime }}</div>
-    </el-col>
+          {{ timeData.weekday }}
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="8">
+        <div>{{ timeData.popTime === "" ? "加载中..." : timeData.popTime }}</div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="8">
+        <div>{{ timeData.tradTime === "" ? "加载中..." : timeData.tradTime }}</div>
+      </el-col>
+    </client-only>
   </el-row>
 </template>
 
@@ -45,9 +45,9 @@ const initData = () => {
   timeData.value.shengxiao = getShengXiao();
 }
 
-initData();
 onMounted(() => {
   if (inBrowser()) {
+    initData();
     setInterval(function () {
       timeData.value.clientTime = getClientTime();
     }, 1000);
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.time{
+.time {
   margin-bottom: 10px;
 }
 </style>
