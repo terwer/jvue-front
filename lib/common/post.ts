@@ -12,16 +12,20 @@ export class Post {
     mt_keywords: string
     link?: string
     permalink: string
-    shortDesc?:string
+    shortDesc?: string
     description: string
     mt_excerpt?: string
     wp_slug: string
     dateCreated: Date
     categories: Array<string>
     mt_text_more?: string
-    post_status?:string
+    post_status?: string
     isPublished: boolean
     wp_password: string
+    /**
+     * 缩略图
+     */
+    thumbnails?: string[]
 
     constructor() {
         this.postid = ""
@@ -35,5 +39,6 @@ export class Post {
         this.isPublished = true
         this.post_status = POST_STATUS_CONSTANTS.POST_STATUS_PUBLISH
         this.wp_password = ""
+        this.thumbnails = []
     }
 }
