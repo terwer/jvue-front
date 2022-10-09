@@ -1,7 +1,11 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage/>
-  </NuxtLayout>
+  <Transition name="page" mode="out-in">
+    <NuxtLayout>
+      <div :key="$route.fullPath">
+        <NuxtPage/>
+      </div>
+    </NuxtLayout>
+  </Transition>
 </template>
 
 <script lang="ts" setup>

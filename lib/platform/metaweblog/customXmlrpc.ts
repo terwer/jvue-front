@@ -1,4 +1,5 @@
 import logUtil from "~/lib/logUtil";
+// 注意：这里必须带上后缀.js，否则生产环境的vercel会构建失败
 // @ts-ignore
 import * as Serializer from 'xmlrpc/lib/serializer.js'
 import { parse } from 'arraybuffer-xml-parser';
