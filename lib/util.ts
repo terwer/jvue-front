@@ -6,6 +6,14 @@ export function inBrowser() {
 }
 
 /**
+ * 是否移动端
+ */
+export function isMobile() {
+    const isMobile = inBrowser() ? document.body.clientWidth < 768 : false
+    return isMobile
+}
+
+/**
  * 获取url参数
  * @param sParam 参数
  */
