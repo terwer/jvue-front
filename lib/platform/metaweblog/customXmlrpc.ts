@@ -1,6 +1,6 @@
 import logUtil from "~/lib/logUtil";
 // @ts-ignore
-import * as Serializer from 'xmlrpc/lib/serializer'
+import * as Serializer from 'xmlrpc/lib/serializer.js'
 import { parse } from 'arraybuffer-xml-parser';
 
 /**
