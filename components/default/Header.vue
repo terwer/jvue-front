@@ -1,6 +1,6 @@
 <template>
   <header>
-    <el-page-header :icon="ArrowLeft" title="返回" @click="onBack" v-if="false">
+    <el-page-header :icon="ArrowLeft" title="返回" @click="onBack" v-if="$route.fullPath!='/' && isM">
       <template #content>
         <div class="flex items-center">
           <span class="text-large font-600 mr-3"> {{ $route.fullPath }} </span>
@@ -11,7 +11,7 @@
     <header-time/>
     <header-menu/>
 
-    <div class="h-6" />
+    <div class="h-6"/>
   </header>
 </template>
 
@@ -20,11 +20,14 @@ import {ElPageHeader} from "element-plus";
 import {ArrowLeft} from '@element-plus/icons-vue'
 import HeaderTime from "~/components/default/HeaderTime.vue";
 import HeaderMenu from "~/components/default/HeaderMenu.vue";
+import {isMobile} from "~/lib/util";
 
 const router = useRouter();
 const onBack = () => {
   router.go(-1)
 }
+
+const isM = isMobile()
 </script>
 
 <script lang="ts">

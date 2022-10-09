@@ -52,11 +52,10 @@
 </template>
 
 <script lang="ts" setup>
-import logUtil from "~/lib/logUtil";
 import {SERVER_API_CONSTANTS} from "~/lib/constants/serverApiConstants";
 import {Post} from "~/lib/common/post";
 import {isMobile} from "~/lib/util";
-import {ElCard, ElRow, ElCol, ElButton} from "element-plus";
+import {ElButton, ElCard, ElCol, ElRow} from "element-plus";
 
 const postData = ref({
   isMobile: isMobile(),
@@ -115,7 +114,6 @@ export default {
   margin-top: 15px;
   float: left;
   font-weight: bold;
-  color: #212121 !important;
 }
 
 .read-more:hover {
