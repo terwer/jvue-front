@@ -1,5 +1,5 @@
 <template>
-  <div id="post" class="post-default">
+  <div id="post" class="post-detail-content-box">
     <!-- 导航 -->
     <!--
     <el-breadcrumb separator="/">
@@ -21,7 +21,24 @@
       <input type="hidden" :value="postObj.postid"/>
     </div>
 
+    <!--
+    <div v-if="postObj.tagArray">
+      <NuxtLink
+          v-for="tagItem in postObj.tagArray"
+          :key="tagItem.tag"
+          :to="'/tag/' + tagItem.tag"
+      >
+        <el-tag :type="tagItem.color" class="post-tag">
+          {{ tagItem.tag }}
+        </el-tag>
+      </NuxtLink>
+    </div>
+    -->
+
     <!-- 文章详情 -->
+    <!--
+      v-hilight
+    -->
     <div
         id="postContent"
         v-html="postObj.description"
@@ -78,7 +95,7 @@ export default {
   min-width: 600px !important;
 }
 
-#post-detail-body h1{
+#post-detail-body h1 {
   padding: 0;
 }
 
@@ -88,7 +105,7 @@ export default {
   padding: 10px 0;
 }
 
-#postTitle .title-text{
+#postTitle .title-text {
   font-size: 32px;
   color: var(--el-color-primary);
 }

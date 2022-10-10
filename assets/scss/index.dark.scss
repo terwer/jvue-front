@@ -3,3 +3,19 @@ html.dark body{
   --custom-app-color:#ffffff;
   --custom-app-bg-color: #000000;
 }
+
+/* dark table */
+html.dark .post-detail-content-box table {
+  color: #ffffff;
+  border-color: #ccc;
+}
+
+html.dark .post-detail-content-box table th {
+  border-color: #ccc;
+  background-color: #161616;
+}
+
+html.dark .post-detail-content-box table td {
+  border-color: #ccc;
+  background-color: #161616;
+}

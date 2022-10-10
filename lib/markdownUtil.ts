@@ -1,6 +1,6 @@
 import Showdown from "showdown"
 
-const converter = new Showdown.Converter()
+const converter = new Showdown.Converter({tables: true});
 
 /**
  * 渲染Markdown

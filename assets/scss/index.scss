@@ -77,3 +77,31 @@ https://github.com/nuxt/framework/issues/3141#issuecomment-1212899838
 .el-menu-item > div {
   margin-left: -20px !important;
 }
+
+
+/* table */
+.post-detail-content-box table {
+  font-family: verdana, arial, sans-serif;
+  font-size: 14px;
+  color: #333333;
+  border-width: 1px;
+  border-color: #666666;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.post-detail-content-box table th {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #666666;
+  background-color: #dedede;
+}
+
+.post-detail-content-box table td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #666666;
+  background-color: #ffffff;
+}
