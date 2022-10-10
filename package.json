@@ -29,6 +29,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "arraybuffer-xml-parser": "^0.6.0",
     "element-plus": "^2.2.15",
+    "highlight.js": "^11.6.0",
     "pinia": "^2.0.23",
     "showdown": "^2.1.0",
     "vue": "^3.2.40",

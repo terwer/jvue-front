@@ -36,11 +36,9 @@
     -->
 
     <!-- 文章详情 -->
-    <!--
-      v-hilight
-    -->
     <div
         id="postContent"
+        v-highlight
         v-html="postObj.description"
     ></div>
 
