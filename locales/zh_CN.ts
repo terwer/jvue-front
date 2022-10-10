@@ -9,4 +9,6 @@ export default {
     "theme.choose.terwer": "特维主题",
     "ele.select.placeholder": "请选择",
     "header.nowis":"现在是",
+    "header.search":"搜索",
+    "header.search.k.placeholder":"请输入关键字",
 }

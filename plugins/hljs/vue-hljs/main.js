@@ -5,6 +5,7 @@ import "./vs.css";
 import {renderHTML} from "~/lib/markdownUtil";
 import {unescapeHTML} from "~/lib/strUtil";
 import logUtil from "~/lib/logUtil";
+import {prettyHtml} from "~/lib/htmlUtil";
 
 const vueHljs = {};
 
@@ -15,7 +16,8 @@ vueHljs.install = Vue => {
     );
 
     Vue.directive("highlight", el => {
-        const html = renderHTML(el.innerHTML)
+        let html = renderHTML(el.innerHTML)
+        html = prettyHtml(html)
         // console.log(html)
         el.innerHTML = html;
 
