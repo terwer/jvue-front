@@ -88,61 +88,61 @@ export default {
 </script>
 
 <style lang="scss">
-.el-card__body {
+#postList .el-card__body {
   padding: 0;
 }
 
-.time {
-  font-size: 13px;
+#postList .time {
+  font-size: 12px;
   color: #999;
   line-height: 10px;
   margin-top: 10px;
 }
 
-.post-item {
-  margin: 10px;
+#postList .post-item {
+  margin: 0;
   padding: 10px;
 }
 
-.bottom {
+#postList .bottom {
   margin-top: 13px;
   line-height: 12px;
 }
 
-.read-more {
+#postList .read-more {
   padding: 0;
   margin-top: 15px;
   float: left;
   font-weight: bold;
 }
 
-.read-more:hover {
+#postList .read-more:hover {
   color: #409eff !important;
 }
 
-.image {
+#postList .image {
   width: 100%;
   max-height: 150px;
   display: block;
   padding: 0 20px 0 0;
 }
 
-.clearfix:before,
-.clearfix:after {
+#postList .clearfix:before,
+#postList .clearfix:after {
   display: table;
   content: "";
 }
 
-.clearfix:after {
+#postList .clearfix:after {
   clear: both;
 }
 
-.page {
+#postList .page {
   line-height: 30px;
   font-size: 14px;
 }
 
-.article-ext {
+#postList .article-ext {
   font-size: 14px;
 
   .article-ext-info {
@@ -150,7 +150,7 @@ export default {
   }
 }
 
-.s-keyword-dark {
+#postList .s-keyword-dark {
   color: red;
 }
 </style>
