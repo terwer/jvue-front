@@ -12,7 +12,7 @@
       <NuxtLink
           v-for="tagItem in postTags"
           :key="tagItem"
-          :to="'/tag/' + tagItem"
+          :to="'/s/' + tagItem"
       >
         <el-tag class="post-tag">
           {{ tagItem }}

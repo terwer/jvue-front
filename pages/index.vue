@@ -1,8 +1,11 @@
 <template>
-  <HomePostList/>
+  <HomePostList :page="pg"/>
 </template>
 
 <script lang="ts" setup>
+const route = useRoute()
+const pg = route.query.pg || 1
+
 useHead({
   title: 'My App Index',
   // or, instead:

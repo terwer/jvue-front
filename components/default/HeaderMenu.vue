@@ -44,6 +44,7 @@
               maxlength="50"
               show-word-limit
               v-model="k"
+              @input="handleKInput"
               @keyup.enter.native="doSearch"
           />
         </el-form-item>
@@ -117,14 +118,15 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 const k = ref("")
 const {sk} = useSearchStore()
+const handleKInput = () => {
+  k.value = k.value.replace("_", " ")
+}
 const doSearch = () => {
   const key = "/s/" + k.value
   router.push({path: key});
 
   if (inBrowser()) {
-    if (window.location.href.indexOf("/s/") > -1) {
-      window.location.href=key
-    }
+    window.location.href = key
   }
 
   console.log("doSearch=>" + key)
