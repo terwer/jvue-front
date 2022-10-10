@@ -63,6 +63,9 @@ export default {
 
 <style scoped lang="scss">
 .time {
+  div{
+    padding: 5px 0;
+  }
   margin-bottom: 10px;
 }
 </style>

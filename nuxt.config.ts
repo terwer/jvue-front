@@ -1,8 +1,19 @@
-import {defineNuxtConfig} from 'nuxt'
+import {defineNuxtConfig} from 'nuxt/config'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    app: {
+        head: {
+            script: [
+                {
+                    src: "/lute.min.js",
+                },
+            ],
+        },
+    },
+
+
     // meta
     meta: {
         title: 'Element Plus + Nuxt 3',

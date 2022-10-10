@@ -3,12 +3,16 @@ import {API} from "~/lib/api";
 
 export default defineEventHandler(async (event) => {
     const query = useQuery(event)
+
     if (query.t instanceof Array) {
         throw new Error("参数类型错误")
     }
-
     const type = query.t || API_TYPE_CONSTANTS.API_TYPE_WORDPRESS
-    const postid = "1"
+
+    if (query.postid instanceof Array) {
+        throw new Error("参数类型错误")
+    }
+    const postid = query.postid || "1"
 
     const env = useRuntimeConfig()
     console.log('Runtime env:', env)

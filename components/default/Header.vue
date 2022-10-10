@@ -1,5 +1,7 @@
 <template>
   <header>
+    <header-time/>
+
     <el-page-header :icon="ArrowLeft" title="返回" @click="onBack" v-if="$route.fullPath!='/' && isM">
       <template #content>
         <div class="flex items-center">
@@ -8,10 +10,9 @@
       </template>
     </el-page-header>
 
-    <header-time/>
     <header-menu/>
 
-    <div class="h-6"/>
+    <div class="h-6" v-if="!isM"/>
   </header>
 </template>
 

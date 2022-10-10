@@ -106,8 +106,9 @@ export class SiYuanApiAdaptor implements IApi {
         const shortDesc = attrs["custom-desc"] || ""
 
         // 渲染Markdown
-        let htmlContent = renderHTML(md.content)
-        htmlContent = prettyHtml(htmlContent)
+        // let htmlContent = renderHTML(md.content)
+        // htmlContent = prettyHtml(htmlContent)
+        let mdContent = md.content
 
         let title = siyuanPost.content || ""
         title = removeTitleNumber(title)
@@ -116,7 +117,7 @@ export class SiYuanApiAdaptor implements IApi {
         let commonPost = new Post()
         commonPost.postid = siyuanPost.root_id || ""
         commonPost.title = title
-        commonPost.description = htmlContent || ""
+        commonPost.description = mdContent || ""
         commonPost.shortDesc = shortDesc || ""
         commonPost.mt_keywords = attrs.tags || ""
         commonPost.isPublished = isPublished
