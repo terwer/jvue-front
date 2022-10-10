@@ -2,6 +2,9 @@ import Hljs from "highlight.js";
 import {CopyButtonPlugin} from "../codecopy";
 import "../codecopy/codecopy.css";
 import "./vs.css";
+import {renderHTML} from "~/lib/markdownUtil";
+import {unescapeHTML} from "~/lib/strUtil";
+import logUtil from "~/lib/logUtil";
 
 const vueHljs = {};
 
@@ -12,8 +15,24 @@ vueHljs.install = Vue => {
     );
 
     Vue.directive("highlight", el => {
+        const html = renderHTML(el.innerHTML)
+        // console.log(html)
+        el.innerHTML = html;
+
         const blocks = el.querySelectorAll("pre code");
         Array.prototype.forEach.call(blocks, Hljs.highlightBlock);
+
+        // 取消转义
+        Array.prototype.forEach.call(blocks, function (bel) {
+            const bclass = bel.getAttribute("class");
+            console.log(bclass)
+            let newHtml = bel.innerHTML
+            // console.log(newHtml)
+
+            newHtml = unescapeHTML(newHtml)
+            bel.innerHTML = newHtml
+            // console.log(newHtml)
+        })
 
         // 代码选项卡
         // 代码块

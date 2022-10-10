@@ -146,9 +146,9 @@ export class MetaWeblogApi {
         const postStruct = ret.params.param.value || []
         const post = this.parsePost(postStruct)
 
-        let htmlContent = renderHTML(post.description)
-        htmlContent = prettyHtml(htmlContent)
-        post.description = htmlContent
+        // let htmlContent = renderHTML(post.description)
+        // htmlContent = prettyHtml(htmlContent)
+        // post.description = htmlContent
 
         return Promise.resolve(post)
     }

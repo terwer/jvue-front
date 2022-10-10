@@ -4,6 +4,8 @@
  *  @copyright Copyright 2021. All rights reserved.
  */
 
+import {unescapeHTML} from "~/lib/strUtil";
+
 /**
  * Adds a copy button to highlightjs code blocks
  */
@@ -40,7 +42,7 @@ export class CopyButtonPlugin {
         button.onclick = function () {
             if (!navigator.clipboard) return;
 
-            let newText = text;
+            let newText = unescapeHTML(text);
             // @ts-ignore
             // eslint-disable-next-line no-undef
             // if (hook && typeof hook === "function") {
