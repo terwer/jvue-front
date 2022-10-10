@@ -9,4 +9,6 @@ export default {
     "theme.choose.terwer": "Terwer theme",
     "ele.select.placeholder": "Select",
     "header.nowis":"Now is",
+    "header.search":"Search",
+    "header.search.k.placeholder":"Please input...",
 }

@@ -36,14 +36,32 @@
           </div>
         </el-menu-item>
       </template>
+      <el-form :inline="true" class="s-form">
+        <el-form-item>
+          <el-input
+              style="max-width: 100%;min-width: 400px;"
+              :placeholder="$t('header.search.k.placeholder')"
+              maxlength="50"
+              show-word-limit
+              v-model="k"
+              @keyup.enter.native="doSearch"
+          />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="doSearch">{{ $t('header.search') }}</el-button>
+        </el-form-item>
+      </el-form>
     </el-menu>
+
   </client-only>
 </template>
 
 <script lang="ts" setup>
-import {ElMenu, ElMenuItem, ElSubMenu} from "element-plus";
-import {ref} from 'vue'
+import {ElMenu, ElMenuItem, ElSubMenu, ElInput, ElButton, ElForm, ElFormItem} from "element-plus";
+import {onMounted, ref} from 'vue'
 import logUtil from "~/lib/logUtil";
+import {useSearchStore} from "~/stores/searchStore";
+import {inBrowser} from "~/lib/util";
 
 const router = useRouter();
 
@@ -96,6 +114,25 @@ const handleSelect = (key: string, keyPath: string[]) => {
   router.push({path: key});
 
 }
+
+const k = ref("")
+const {sk} = useSearchStore()
+const doSearch = () => {
+  const key = "/s/" + k.value
+  router.push({path: key});
+
+  if (inBrowser()) {
+    if (window.location.href.indexOf("/s/") > -1) {
+      window.location.href=key
+    }
+  }
+
+  console.log("doSearch=>" + key)
+}
+
+onMounted(() => {
+  k.value = sk
+})
 </script>
 
 <script lang="ts">
@@ -114,5 +151,11 @@ export default {
 .el-sub-menu svg {
   vertical-align: middle;
   padding-right: 5px;
+}
+
+/* 搜索 */
+.s-form {
+  padding-top: 12px;
+  margin-left: 20px;
 }
 </style>

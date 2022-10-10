@@ -1,11 +1,13 @@
 <template>
   <div id="postList">
     <div v-if="postData.postList.length > 0">
+      <el-row class="k-show">
+        <el-col v-if="props.keyword !== ''" class="s-keyword-dark" :spans="24">
+          关键字： {{ props.keyword }}
+        </el-col>
+      </el-row>
       <el-card v-for="post in postData.postList" :key="post.postid" class="post-item">
         <el-row>
-          <el-col v-if="postData.keyword !== ''" class="s-keyword-dark" :spans="24">
-            关键字： {{ postData.keyword }}
-          </el-col>
           <el-col
               v-if="!isMobile && post.thumbnails.length > 0"
               :xs="24"
@@ -41,7 +43,7 @@
                 发布于 {{ post.dateCreated || (new Date()).toISOString() }}
               </div>
               <nuxt-link :to="'/post/' + post.postid + '.html'">
-              <el-button type="text" class="read-more">查看全文</el-button>
+                <el-link :underline="false" class="read-more">查看全文</el-link>
               </nuxt-link>
             </div>
           </el-col>
@@ -55,11 +57,22 @@
 import {SERVER_API_CONSTANTS} from "~/lib/constants/serverApiConstants";
 import {Post} from "~/lib/common/post";
 import {isMobile} from "~/lib/util";
-import {ElButton, ElCard, ElCol, ElRow} from "element-plus";
+import {ElCard, ElCol, ElLink, ElRow} from "element-plus";
+import logUtil from "~/lib/logUtil";
+
+const props = defineProps({
+  keyword: {
+    type: String,
+    default: ""
+  },
+  page: {
+    type: Number,
+    default: 1
+  }
+})
 
 const postData = ref({
   isMobile: isMobile(),
-  keyword: "",
   postList: <Post[]>[]
 })
 
@@ -67,6 +80,7 @@ const route = useRoute()
 
 const homePostsUrl = route.query.t ? SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS + "?t=" + route.query.t :
     SERVER_API_CONSTANTS.SERVER_API_GET_RECENT_POSTS
+logUtil.logError(props.keyword)
 const {data} = await useFetch(homePostsUrl)
 // @ts-ignore
 // postData.value.postList = data.value.data
@@ -100,8 +114,8 @@ export default {
 }
 
 #postList .post-item {
-  margin: 0;
-  padding: 10px;
+  margin: 0 0 10px 0;
+  padding: 0 10px;
 }
 
 #postList .bottom {
@@ -152,5 +166,9 @@ export default {
 
 #postList .s-keyword-dark {
   color: red;
+}
+
+#postList .k-show {
+  margin-bottom: 20px;
 }
 </style>
